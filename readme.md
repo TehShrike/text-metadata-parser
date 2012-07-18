@@ -12,7 +12,7 @@ Say you wrote some random blog posts in a drunken stupor one night, and saved th
 
 	Except my boots.  Those are *mine.*
 
-Well, it's kind of cool that you at least formatted it a bit for yourself, but now the question is - how are you going to parse this text into an easily-usable object JavaScript?
+Well, it's kind of cool that you at least formatted it a bit for yourself, but now the question is - how are you going to parse this text into an easily-usable JavaScript object?
 
 You could write your own parser, of course - or you could use this one.
 

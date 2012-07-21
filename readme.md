@@ -16,17 +16,32 @@ Well, it's kind of cool that you at least formatted it a bit for yourself, but n
 
 You could write your own parser, of course - or you could use this one.
 
-In Node.js:
+In Node.js
+------
+
+Install:
+	
+	npm install text-metadata-parser
+	
+Include:
 
 	var parse = require('text-metadata-parser');
 
 In the browser:
+------
+
+Include:
+
+	<script src="text-metadata-parser.js"></script>
+	
+Access:
 
 	var parse = TEXT_METADATA_PARSER.parse;
-	
-Parse it the way you want:
 
-	var my_drunken_ramblings = parse(a_variable_containing_that_big_string, {
+Parse them strings
+------
+
+	var my_drunken_ramblings = parse(that_big_string_from_earlier_in_the_example, {
 		number: ['lovers', 'bagels'],
 		string: ['title', 'attn'],
 		date: ['date'],
@@ -34,21 +49,19 @@ Parse it the way you want:
 		default: { lovers: 5, bagels: 3}
 	});
 	
-3: PROFIT!!!11
+PROFIT!!!11
 
-	> console.log(my_drunken_ramblings.metadata.title);
-	Last will and testament
+	> my_drunken_ramblings.metadata.title
+	'Last will and testament'
 	
-	> console.log(my_drunken_ramblings.metadata.date);
+	> my_drunken_ramblings.metadata.date
 	Fri Sep 13 2019 00:00:00 GMT+0000 (Coordinated Universal Time)
 	
-	> console.log(my_drunken_ramblings.metadata.lovers);
+	> my_drunken_ramblings.metadata.lovers
 	3
 	
-	> console.log(my_drunken_ramblings.metadata.bagels);
+	> my_drunken_ramblings.metadata.bagels
 	3
 	
-	> console.log(my_drunken_ramblings.content);
-	I leave everything to Janet.
-	
-	Except my boots.  Those are *mine.*
+	> my_drunken_ramblings.content
+	'I leave everything to Janet.\n\nExcept my boots.  Those are *mine.*'

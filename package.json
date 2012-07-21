@@ -1,2 +1,9 @@
-{ "name" : "text-metadata-parser",
-  "main" : "./text-metadata-parser.js" }
+{
+	"name": "text-metadata-parser",
+	"version": 1.0,
+	"main": "./text-metadata-parser.js",
+	"author": { "name": "TehShrike", "email": "me@JoshDuff.com", "url": "http://joshduff.com" },
+	"description": "Text Metadata Parser was created for two reasons: to parse content and content metadata out of a single string or file, and to try to come up with the most boring library name ever!",
+	"keywords": ["metadata","string","file"],
+	"repository": { "type": "git", "url": "https://github.com/TehShrike/text-metadata-parser.git" }
+}

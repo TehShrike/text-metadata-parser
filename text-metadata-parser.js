@@ -87,13 +87,3 @@ if (typeof module !== 'undefined'
 	&& typeof module.exports !== 'undefined') {
 	module.exports = TEXT_METADATA_PARSER.parse;
 }
-
-/*
-{
-	boolean: ['is_a_butt'],
-	number: ['how_many_butts'],
-	string: ['butt_name'],
-	date: ['butt_birthday'],
-	default: { is_a_butt: true }
-}
-*/

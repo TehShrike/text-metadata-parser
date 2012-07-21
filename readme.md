@@ -27,7 +27,7 @@ Include:
 
 	var parse = require('text-metadata-parser');
 
-In the browser:
+In the browser
 ------
 
 Include:

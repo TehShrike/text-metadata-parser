@@ -2,11 +2,11 @@ var TEXT_METADATA_PARSER = {
 	make_value: {
 		boolean: function(value) {
 			return value.toString().toLowerCase !== 'false'
-				&& !(/^\d+$/.test(value) 
+				&& !(/^\d+$/.test(value)
 				&& parseInt(value) !== 0);
 		},
 		number: function(value) {
-			return parseInt(value) || parseFloat(value);
+			return parseFloat(value);
 		},
 		string: function(value) {
 			return value.toString();
@@ -42,7 +42,7 @@ var TEXT_METADATA_PARSER = {
 
 		return parsed_object;
 	},
-	
+
 	mapProperties: function(object, properties, iterator) {
 		if (Array.isArray(properties)) {
 			properties.forEach(function(property) {
@@ -50,12 +50,12 @@ var TEXT_METADATA_PARSER = {
 					object[property] = iterator(object[property]);
 				}
 			});
+			return object;
 		} else {
 			return TEXT_METADATA_PARSER.mapProperties(object, [properties.toString()], iterator);
 		}
-		return object;
 	},
-	
+
 	mapDefaults: function(object, defaults) {
 		for (property in defaults) {
 			if (typeof object[property] === 'undefined') {
@@ -67,9 +67,9 @@ var TEXT_METADATA_PARSER = {
 	parse: function(text, options) {
 		options = options || {}
 		var parsed = TEXT_METADATA_PARSER.parseString(text);
-		
+
 		TEXT_METADATA_PARSER.mapDefaults(parsed.metadata, options.default || {});
-		
+
 		TEXT_METADATA_PARSER.mapProperties(
 			parsed.metadata, options.boolean || [], TEXT_METADATA_PARSER.make_value.boolean);
 		TEXT_METADATA_PARSER.mapProperties(

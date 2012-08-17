@@ -15,11 +15,7 @@ var my_drunken_ramblings = parse(that_big_string_from_earlier_in_the_example, {
 	string: ['title', 'attn'],
 	date: ['date'],
 	boolean: 'deceased',
-	default: { lovers: 5, bagels: 3}
+	default: { lovers: 5, bagels: 3.5}
 });
 
-console.dir(my_drunken_ramblings.metadata.title);
-console.dir(my_drunken_ramblings.metadata.date);
-console.dir(my_drunken_ramblings.metadata.lovers);
-console.dir(my_drunken_ramblings.metadata.bagels);
-console.dir(my_drunken_ramblings.content);
+console.dir(my_drunken_ramblings);

@@ -1,6 +1,6 @@
 {
 	"name": "text-metadata-parser",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"main": "./text-metadata-parser.js",
 	"author": { "name": "TehShrike", "email": "me@JoshDuff.com", "url": "http://joshduff.com" },
 	"description": "Text Metadata Parser was created for two reasons: to parse content and content metadata out of a single string or file, and to try to come up with the most boring library name ever!",

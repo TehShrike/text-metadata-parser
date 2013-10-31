@@ -26,7 +26,7 @@ var TEXT_METADATA_PARSER = {
 			if (!done_reading_metadata) {
 				var found_metadata = /^([^:]+):\s*([^\r\n]+)\s*$/.exec(lines[i]);
 				if (found_metadata && found_metadata.length === 3) {
-					var property = found_metadata[1];
+					var property = found_metadata[1].trim();
 					parsed_object.metadata[property] = found_metadata[2];
 				} else if (i === 0) {
 					return { content: text, metadata: {} }

@@ -2,18 +2,27 @@ var test = require('tap').test
 var Parser = require('../')
 
 test("some generic test", function test(t) {
-
+	
+	var obj = { string: ['title'] }
 	var markdown_string =
 		  "title    :    my sweet title\n"
 		+ "this is some text"
 
-	var myParser = new Parser({
+		
+	/*var myParser = new Parser({
 		string: ['title']
-	})
- 
-	var parsed_string = parse(markdown_string)
-
-	t.equal(parsed_string.metadata.title, 'my sweet title', 'metadata still parses')
+	})*/
+	
+	
+	var parserNorm = Parser(markdown_string,obj)
+	console.log("object:   " + parserNorm)	//should be an object (it is)
+	
+	
+	var parseWithObj = Parser(obj)
+	var theString = parseWithObj(markdown_string)
+	console.log("function: " + parseWithObj)	//should be a function (it is)
+	console.log("object?:  " + theString)		//should be a string (it is NOT)
+	t.equal(theString.metadata, 'my sweet title', 'metadata still parses')
 
 	t.end()
 })

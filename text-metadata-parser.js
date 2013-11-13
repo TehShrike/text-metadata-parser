@@ -65,12 +65,12 @@ var TEXT_METADATA_PARSER = {
 		}
 	},
 
-	parse: function(text, options) {
-		var parsed = 0
-		var defaultOpts = 0
-		if (typeof options === "object") {	//If options is an object, parse normally
+	parse: function(text, options) { //constructor function
+
+		if (typeof text !== "object") {	//If text is not an object, parse normally
+			console.log("running parse([string], "+options+");")
 			options = options || {}
-			parsed = TEXT_METADATA_PARSER.parseString(text);
+			var parsed = TEXT_METADATA_PARSER.parseString(text);
 
 			TEXT_METADATA_PARSER.mapDefaults(parsed.metadata, options.default || {});
 
@@ -82,13 +82,16 @@ var TEXT_METADATA_PARSER = {
 				parsed.metadata, options.string || [], TEXT_METADATA_PARSER.make_value.string);
 			TEXT_METADATA_PARSER.mapProperties(
 			parsed.metadata, options.date || [], TEXT_METADATA_PARSER.make_value.date);
+			return parsed
 		} else {	//If options is NOT an object, create function that defaults to text's options
-			defaultOpts = text
-			parsed = (function(inText) {
-				TEXT_METADATA_PARSER.parse(inText,defaultOpts)
+			console.log("running parse("+text,", "+options+");")
+			var options2 = text
+			return (function(inText) {
+				console.log("running constructed, options2:")
+				console.log(options2)
+				TEXT_METADATA_PARSER.parse(inText,options2)
 			})
 		}
-		return parsed
 	}
 }
 
@@ -96,3 +99,25 @@ if (typeof module !== 'undefined'
 	&& typeof module.exports !== 'undefined') {
 	module.exports = TEXT_METADATA_PARSER.parse;
 }
+
+
+/*
+function MyClass () { // constructor function
+  var privateVariable = "foo";
+
+  this.publicVariable = "bar";
+
+  this.privilegedMethod = function () {
+    alert(privateVariable);
+  };
+}
+
+MyClass.prototype.publicMethod = function () {
+  alert(this.publicVariable);
+};
+
+MyClass.staticProperty = "baz";
+
+//...
+var myInstance = new MyClass();
+*/

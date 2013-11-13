@@ -21,7 +21,9 @@ test("first generic test", function test(t) {
 		boolean: 'deceased',
 		default: { lovers: 5, bagels: 3.5}
 	})
-
+	
+	console.log("\ntypeof parsed_string:"+typeof parsed_string+"\n")
+	
 	t.equal(parsed_string.metadata.title, 'Last will and testament', 'parse title')
 	t.similar(parsed_string.metadata.date, new Date('2019-09-13'), 'test date') // new Date(string) is local timezone, new Date(y,m,d) is UTC...
 	t.equal(parsed_string.metadata.attn, 'Secret Family', 'attn field')

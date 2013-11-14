@@ -68,7 +68,7 @@ var TEXT_METADATA_PARSER = {
 	parse: function(text, options) { //constructor function
 
 		if (typeof text !== "object") {	//If text is not an object, parse normally
-			console.log("running parse([string], "+options+");")
+			//console.log("running parse([string], "+options+");")
 			options = options || {}
 			var parsed = TEXT_METADATA_PARSER.parseString(text);
 
@@ -84,12 +84,12 @@ var TEXT_METADATA_PARSER = {
 			parsed.metadata, options.date || [], TEXT_METADATA_PARSER.make_value.date);
 			return parsed
 		} else {	//If options is NOT an object, create function that defaults to text's options
-			console.log("running parse("+text,", "+options+");")
+			//console.log("running parse("+text,", "+options+");")
 			var options2 = text
 			return (function(inText) {
-				console.log("running constructed, options2:")
-				console.log(options2)
-				TEXT_METADATA_PARSER.parse(inText,options2)
+				/*console.log("running constructed, options2:")
+				console.log(options2)*/
+				return (TEXT_METADATA_PARSER.parse(inText,options2))
 			})
 		}
 	}

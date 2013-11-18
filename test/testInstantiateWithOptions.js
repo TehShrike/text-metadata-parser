@@ -4,19 +4,15 @@ var parse = require('../')
 
 test("some generic test", function test(t) {
 
-	//console.log("\n1\n")
-
 	var markdown_string =
 		  "title    :    my sweet title\n"
 		+ "this is some text"
 
-	var parseTitle = parse({ //no string, lol
+	var parseTitle = parse({
 		string: ['title']
 	})
 	
 	var parsed_string = parseTitle(markdown_string)
-	/*console.log("\ntypeof parsed_string:"+typeof parsed_string+"\n")
-	console.log("\nparsed_string: "+parsed_string+"\n")*/
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'metadata still parses')
 
@@ -26,8 +22,6 @@ test("some generic test", function test(t) {
 
 
 test("use the instantiated object more than once", function test(t) {
-
-	//console.log("\n2\n")
 
 	var str = "title:    Last will and testament\n"
 		+ "date:	  2019-09-13\n"
@@ -48,13 +42,7 @@ test("use the instantiated object more than once", function test(t) {
 		default: { lovers: 5, bagels: 3}
 	})
 	
-	/*console.log("\ntypeof myParser:"+typeof myParser+"\n")
-	console.log("myParser(str): "+myParser(str)+"\n")*/
-	
 	var result = myParser(str)
-	
-	//console.log("typeof result: "+typeof result+"\n")
-	
 
 	t.equal(result.content, "I leave everything to Janet.\n\n"
 		+ "Except my boots.  Those are *mine.*")
@@ -71,10 +59,9 @@ test("use the instantiated object more than once", function test(t) {
 		+ "this is some text"
  
 	var parsed_string = myParser(markdown_string)
-/*
+
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'metadata still parses')
 	t.equal(result.metadata.lovers, 5, "lovers should be the number 5")
 	t.equal(result.metadata.bagels, 3, "bagels should be the number 3")
-*/
 	t.end()
 })

@@ -99,25 +99,3 @@ if (typeof module !== 'undefined'
 	&& typeof module.exports !== 'undefined') {
 	module.exports = TEXT_METADATA_PARSER.parse;
 }
-
-
-/*
-function MyClass () { // constructor function
-  var privateVariable = "foo";
-
-  this.publicVariable = "bar";
-
-  this.privilegedMethod = function () {
-    alert(privateVariable);
-  };
-}
-
-MyClass.prototype.publicMethod = function () {
-  alert(this.publicVariable);
-};
-
-MyClass.staticProperty = "baz";
-
-//...
-var myInstance = new MyClass();
-*/

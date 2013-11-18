@@ -1,5 +1,4 @@
-var that_big_string_from_earlier_in_the_example =
-	"title:    Last will and testament\n"
+var that_big_string_from_earlier_in_the_example = "title:    Last will and testament\n"
 	+ "date:	  2019-09-13\n"
 	+ "attn:     Secret Family\n"
 	+ "lovers:   3\n"

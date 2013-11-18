@@ -24,6 +24,6 @@
   	"test": "test"
   },
   "scripts": {
-  	"test": "tap ./test"
+  	"test": "tap ./test/*.js"
   }
 }

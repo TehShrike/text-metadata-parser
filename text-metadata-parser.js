@@ -1,5 +1,4 @@
 var TEXT_METADATA_PARSER = {
-	
 	make_value: {
 		boolean: function(value) {
 			return value.toString().toLowerCase() !== 'false'

@@ -1,5 +1,5 @@
 var test = require('tap').test
-var parse = require('../')
+var Parser = require('../')
 
 
 test("some generic test", function test(t) {
@@ -8,7 +8,7 @@ test("some generic test", function test(t) {
 		  "title    :    my sweet title\n"
 		+ "this is some text"
 
-	var parseTitle = parse({
+	var parseTitle = new Parser({
 		string: ['title']
 	})
 	
@@ -18,8 +18,6 @@ test("some generic test", function test(t) {
 
 	t.end()
 })
-
-
 
 test("use the instantiated object more than once", function test(t) {
 
@@ -34,14 +32,14 @@ test("use the instantiated object more than once", function test(t) {
 		+ "\n"
 		+ "Except my boots.  Those are *mine.*";
 
-	var myParser = parse({
+	var myParser = new Parser({
 		number: ['lovers', 'bagels'],
 		string: ['title', 'attn'],
 		date: ['date'],
 		boolean: 'deceased',
 		default: { lovers: 5, bagels: 3}
 	})
-	
+
 	var result = myParser(str)
 
 	t.equal(result.content, "I leave everything to Janet.\n\n"
@@ -53,7 +51,6 @@ test("use the instantiated object more than once", function test(t) {
 	t.equal(result.metadata.attn, "Secret Family", "match attn string")
 	t.equal(result.metadata.deceased, true, "match deceased boolean")
 
-
 	var markdown_string =
 		  "title    :    my sweet title\n"
 		+ "this is some text"
@@ -61,7 +58,8 @@ test("use the instantiated object more than once", function test(t) {
 	var parsed_string = myParser(markdown_string)
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'metadata still parses')
-	t.equal(result.metadata.lovers, 5, "lovers should be the number 5")
-	t.equal(result.metadata.bagels, 3, "bagels should be the number 3")
+	t.equal(parsed_string.metadata.lovers, 5, "lovers should be the number 5")
+	t.equal(parsed_string.metadata.bagels, 3, "bagels should be the number 3")
+
 	t.end()
 })

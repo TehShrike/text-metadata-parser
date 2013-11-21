@@ -1,24 +1,25 @@
 var test = require('tap').test
 var Parser = require('../')
 
+
 test("some generic test", function test(t) {
 
 	var markdown_string =
 		  "title    :    my sweet title\n"
 		+ "this is some text"
 
-	var myParser = new Parser({
+	var parseTitle = new Parser({
 		string: ['title']
 	})
- 
-	var parsed_string = parse(markdown_string)
+	
+	var parsed_string = parseTitle(markdown_string)
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'metadata still parses')
 
 	t.end()
 })
 
-test("use the instantiated object more than once", function(t) {
+test("use the instantiated object more than once", function test(t) {
 
 	var str = "title:    Last will and testament\n"
 		+ "date:	  2019-09-13\n"
@@ -57,8 +58,8 @@ test("use the instantiated object more than once", function(t) {
 	var parsed_string = myParser(markdown_string)
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'metadata still parses')
-	t.equal(result.metadata.lovers, 5, "lovers should be the number 5")
-	t.equal(result.metadata.bagels, 3, "bagels should be the number 3")
+	t.equal(parsed_string.metadata.lovers, 5, "lovers should be the number 5")
+	t.equal(parsed_string.metadata.bagels, 3, "bagels should be the number 3")
 
 	t.end()
 })

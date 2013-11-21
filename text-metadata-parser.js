@@ -64,22 +64,33 @@ var TEXT_METADATA_PARSER = {
 		}
 	},
 
-	parse: function(text, options) {
-		options = options || {}
-		var parsed = TEXT_METADATA_PARSER.parseString(text);
+	parse: function(text, options) { //constructor function
 
-		TEXT_METADATA_PARSER.mapDefaults(parsed.metadata, options.default || {});
+		if (typeof text !== "object") {	//If text is not an object, parse normally
+			//console.log("running parse([string], "+options+");")
+			options = options || {}
+			var parsed = TEXT_METADATA_PARSER.parseString(text);
 
-		TEXT_METADATA_PARSER.mapProperties(
-			parsed.metadata, options.boolean || [], TEXT_METADATA_PARSER.make_value.boolean);
-		TEXT_METADATA_PARSER.mapProperties(
-			parsed.metadata, options.number || [], TEXT_METADATA_PARSER.make_value.number);
-		TEXT_METADATA_PARSER.mapProperties(
-			parsed.metadata, options.string || [], TEXT_METADATA_PARSER.make_value.string);
-		TEXT_METADATA_PARSER.mapProperties(
+			TEXT_METADATA_PARSER.mapDefaults(parsed.metadata, options.default || {});
+
+			TEXT_METADATA_PARSER.mapProperties(
+				parsed.metadata, options.boolean || [], TEXT_METADATA_PARSER.make_value.boolean);
+			TEXT_METADATA_PARSER.mapProperties(
+				parsed.metadata, options.number || [], TEXT_METADATA_PARSER.make_value.number);
+			TEXT_METADATA_PARSER.mapProperties(
+				parsed.metadata, options.string || [], TEXT_METADATA_PARSER.make_value.string);
+			TEXT_METADATA_PARSER.mapProperties(
 			parsed.metadata, options.date || [], TEXT_METADATA_PARSER.make_value.date);
-
-		return parsed;
+			return parsed
+		} else {	//If options is NOT an object, create function that defaults to text's options
+			//console.log("running parse("+text,", "+options+");")
+			var options2 = text
+			return (function(inText) {
+				/*console.log("running constructed, options2:")
+				console.log(options2)*/
+				return (TEXT_METADATA_PARSER.parse(inText,options2))
+			})
+		}
 	}
 }
 

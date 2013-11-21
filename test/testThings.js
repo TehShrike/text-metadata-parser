@@ -13,13 +13,13 @@ test("first generic test", function test(t) {
 		+ "I leave everything to Janet.\n"
 		+ "\n"
 		+ "Except my boots.  Those are *mine.*"
- 
+
 	var parsed_string = parse(markdown_string, {
 		number: ['lovers', 'bagels'],
 		string: ['title', 'attn'],
 		date: ['date'],
 		boolean: 'deceased',
-		default: { lovers: 5, bagels: 3.5}
+		default: { lovers: 5, bagels: 3.5 }
 	})
 
 	t.equal(parsed_string.metadata.title, 'Last will and testament', 'parse title')
@@ -42,7 +42,7 @@ test("colon in content, newlines at content end", function test(t) {
 		  "title:    my sweet title\n"
 		+ "\n\n"
 		+ "not_a_value: unreal\n\n"
- 
+
 	var parsed_string = parse(markdown_string, {
 		string: ['title']
 	})
@@ -59,7 +59,7 @@ test("newline versus carriage return", function test(t) {
 		  "title:    my sweet title\r\n"
 		+ "\r\n"
 		+ "not_a_value: unreal\r\n"
- 
+
 	var parsed_string = parse(markdown_string, {
 		string: ['title']
 	})
@@ -75,7 +75,7 @@ test("text is parsed if no newline after metadata", function test(t) {
 	var markdown_string =
 		  "title:    my sweet title\n"
 		+ "this is some text"
- 
+
 	var parsed_string = parse(markdown_string, {
 		string: ['title']
 	})
@@ -91,7 +91,7 @@ test("whitespace before metadata key", function test(t) {
 	var markdown_string =
 		  "    title:    my sweet title\n"
 		+ "this is some text"
- 
+
 	var parsed_string = parse(markdown_string, {
 		string: ['title']
 	})
@@ -107,7 +107,7 @@ test("whitespace after metadata key", function test(t) {
 	var markdown_string =
 		  "title    :    my sweet title\n"
 		+ "this is some text"
- 
+
 	var parsed_string = parse(markdown_string, {
 		string: ['title']
 	})

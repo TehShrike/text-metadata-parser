@@ -38,7 +38,11 @@ test("well how about default values I guess?", function test(t) {
 
 	var myParser = new Parser({
 		string: ['title', 'dances'],
-		default: { bears: 5 }
+		number: ['bears', 'lions'],
+		default: {
+			bears: 5,
+			value_from_the_defaults: 'hi there!'
+		}
 	})
 
 	var parsed_string = myParser(markdown_string)
@@ -60,14 +64,25 @@ test("well how about default values I guess?", function test(t) {
 
 	var parsed_string = myParser(markdown_string)
 	t.equal(parsed_string.metadata.bears, 9001, "there are over 9000 bears")
+	t.equal(parsed_string.metadata.value_from_the_defaults, 'hi there!', 'The value from the defaults is still there')
 
 	parsed_string = myParser(markdown_string, {
 		default: { bears: 3 }
 	})
 	t.equal(parsed_string.metadata.bears, 9001, "there are still over 9000 bears")
+	t.equal(parsed_string.metadata.value_from_the_defaults, 'hi there!', 'The value from the defaults is still there')
+
+	markdown_string =
+		  "title    :    with wolves\n"
+		+ "dances   :    2\n"
+		+ "bears    :    9001\n"
+		+ "lions    :    3\n"
+		+ "how many people does it take to tango?"
 
 	parsed_string = myParser(markdown_string)
 	t.equal(parsed_string.metadata.bears, 9001, "yep, still over 9000 bears")
+	t.equal(parsed_string.metadata.bears, 3, "3 lions (the number 3)")
+	t.equal(parsed_string.metadata.value_from_the_defaults, 'hi there!', 'The value from the defaults is still there')
 
 	t.end()
 })

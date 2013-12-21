@@ -20,23 +20,8 @@ In Node.js
 ------
 
 Install:
-	
+
 	npm install text-metadata-parser
-	
-Include:
-
-	var parse = require('text-metadata-parser');
-
-In the browser
-------
-
-Include:
-
-	<script src="text-metadata-parser.js"></script>
-	
-Access:
-
-	var parse = TEXT_METADATA_PARSER.parse;
 
 Parse them strings
 ------
@@ -48,20 +33,28 @@ Parse them strings
 		boolean: 'deceased',
 		default: { lovers: 5, bagels: 3}
 	});
-	
+
 PROFIT!!!11
 
 	> my_drunken_ramblings.metadata.title
 	'Last will and testament'
-	
+
 	> my_drunken_ramblings.metadata.date
 	Fri Sep 13 2019 00:00:00 GMT+0000 (Coordinated Universal Time)
-	
+
 	> my_drunken_ramblings.metadata.lovers
 	3
-	
+
 	> my_drunken_ramblings.metadata.bagels
 	3
-	
+
 	> my_drunken_ramblings.content
 	'I leave everything to Janet.\n\nExcept my boots.  Those are *mine.*'
+
+Todo
+------
+- Add examples passing in custom values overwriting previous ones
+
+License
+------
+[WTFPL](http://wtfpl2.com)

@@ -1,6 +1,6 @@
 {
 	"name": "text-metadata-parser",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"main": "./text-metadata-parser.js",
 	"author": {
 		"name": "TehShrike",
@@ -21,7 +21,7 @@
 		"tap": "~0.4.4"
 	},
 	"dependencies": {
-		"weak-type-wizard": "~0.0.0"
+		"weak-type-wizard": "^1.0.0"
 	},
 	"directories": {
 		"test": "test"

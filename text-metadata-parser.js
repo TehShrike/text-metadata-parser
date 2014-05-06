@@ -44,7 +44,6 @@ function TextMetadataParser(wizard, text, options) {
 	var currentWizard = typeof options === 'object' ? wizard.extend(options) : wizard
 
 	if (calledAsAConstructorFunction) {
-		console.log("Returning a new TMP function with a wizard extended by", options)
 		return TextMetadataParser.bind(null, currentWizard)
 	} else {
 		return parse(currentWizard, text)

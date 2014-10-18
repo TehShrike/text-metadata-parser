@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TehShrike/text-metadata-parser.svg)](https://travis-ci.org/TehShrike/text-metadata-parser)
+
 Text Metadata Parser was created for two reasons: to parse content and content metadata out of a single string, and to try to come up with the most boring library name ever.
 
 Say you wrote some random blog posts in a drunken stupor one night, and saved them all in text files in this format:

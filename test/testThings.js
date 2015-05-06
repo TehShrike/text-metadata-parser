@@ -48,7 +48,7 @@ test("colon in content, newlines at content end", function test(t) {
 	})
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'parse title')
-	t.equal(parsed_string.content, "not_a_value: unreal\n\n", 'newlines preserved')
+	t.equal(parsed_string.content, "not_a_value: unreal", 'newlines preserved')
 
 	t.end()
 })
@@ -65,7 +65,7 @@ test("newline versus carriage return", function test(t) {
 	})
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'title does not contain newline or carriage return')
-	t.equal(parsed_string.content, "not_a_value: unreal\r\n", 'newline and carriage return preserved')
+	t.equal(parsed_string.content, "not_a_value: unreal", 'newline and carriage return preserved')
 
 	t.end()
 })
@@ -101,7 +101,6 @@ test("whitespace before metadata key", function test(t) {
 	t.end()
 })
 
-
 test("whitespace after metadata key", function test(t) {
 
 	var markdown_string =
@@ -113,6 +112,41 @@ test("whitespace after metadata key", function test(t) {
 	})
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'metadata still parses')
+
+	t.end()
+})
+
+test("unbounded yaml what does it do? it breaks things! surround with the three dashes", function test(t) {
+
+	var markdown_string =
+		  "title: sweetness\n"
+		+ "more:\n"
+		+ "  - thing\n"
+		+ "  - other\n"
+		+ "\n"
+		+ "this is some text"
+
+	var parsed_string = parse(markdown_string)
+
+	t.equal(parsed_string.metadata.title, 'sweetness', 'first simple metadata still parses')
+	t.equal(parsed_string.metadata.more, undefined, 'the simple key:value of old does not support anything complex')
+	t.equal(parsed_string.content, '- thing\n  - other\n\nthis is some text', 'the first line without : is the content')
+
+	t.end()
+})
+
+test('another example of unbounded yaml with no values', function test(t) {
+
+	var markdown_string =
+		  "title: sweetness\n"
+		+ "more:\n"
+		+ "this is some text"
+
+	var parsed_string = parse(markdown_string)
+
+	t.equal(parsed_string.metadata.title, 'sweetness', 'metadata still parses')
+	t.equal(parsed_string.metadata.more, undefined, 'metadata still parses')
+	t.equal(parsed_string.content, 'this is some text')
 
 	t.end()
 })

@@ -52,7 +52,7 @@ test("colon in content, newlines at content end", function test(t) {
 	})
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'parse title')
-	t.equal(parsed_string.content, "not_a_value: unreal\n\n", 'newlines preserved')
+	t.equal(parsed_string.content, "not_a_value: unreal", 'newlines preserved')
 
 	t.end()
 })
@@ -71,7 +71,7 @@ test("newline versus carriage return", function test(t) {
 	})
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'title does not contain newline or carriage return')
-	t.equal(parsed_string.content, "not_a_value: unreal\r\n", 'newline and carriage return preserved')
+	t.equal(parsed_string.content, "not_a_value: unreal", 'newline and carriage return preserved')
 
 	t.end()
 })

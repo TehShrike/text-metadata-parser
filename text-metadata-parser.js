@@ -34,20 +34,10 @@ function parse(wizard, text) {
 	return post
 }
 
-function TextMetadataParser(wizard, text, options) {
-	var calledAsAConstructorFunction = typeof text !== 'string'
+var module.exports = function TextMetadataParser(text, options) {
+	var wizard = new Wizard(options || {})
 
-	if (typeof options === 'undefined' && typeof text !== 'string') {
-		options = text
-	}
-
-	var currentWizard = typeof options === 'object' ? wizard.extend(options) : wizard
-
-	if (calledAsAConstructorFunction) {
-		return TextMetadataParser.bind(null, currentWizard)
-	} else {
-		return parse(currentWizard, text)
-	}
+	return parse(wizard, text)
 }
 
-module.exports = TextMetadataParser.bind(null, new Wizard({}))
+module.exports = TextMetadataParser.bind(null, )

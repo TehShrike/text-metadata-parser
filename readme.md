@@ -1,11 +1,33 @@
 [![Build Status](https://travis-ci.org/TehShrike/text-metadata-parser.svg)](https://travis-ci.org/TehShrike/text-metadata-parser)
 
-Text Metadata Parser was created for two reasons: to parse content and content metadata out of a single string, and to try to come up with the most boring library name ever.
+Text Metadata Parser is a [Jekyll Front Matter](http://jekyllrb.com/docs/frontmatter/)-like parser.
+
+It was created in 2013, before Jekyll was widespread enough for me to just use Front Matter instead.
+
+At this point, text-metadata-parser uses [yaml-front-matter](https://www.npmjs.com/package/yaml-front-matter) internally, meaning that it supports all the YAML features that the other library supports.
+
+In addition, for backwards compatibility, it also allows you to use a much looser syntax.  If you do not enclose the metadata section in `---` three dashes, they will be inferred.  When parsing metadata in "loose mode", key: value sections that have colons in the value string will be allowed, even if they are not enclosed in double quotes.
+
+API
+----
+
+### parse(text, [options])
+
+- `text` is a string that contains a metadata section at the top
+- `options` is an optional object with options to create a [weak-type-wizard](https://github.com/TehShrike/weak-type-wizard) to cast the metadata to whatever types you like
+
+Install
+------
+
+	npm install text-metadata-parser
+
+Example
+----
 
 Say you wrote some random blog posts in a drunken stupor one night, and saved them all in text files in this format:
 
 	title:    Last will and testament
-	date:	  2019-09-13
+	date:	    2019-09-13
 	attn:     Secret Family
 	lovers:   3
 	deceased: true
@@ -14,19 +36,8 @@ Say you wrote some random blog posts in a drunken stupor one night, and saved th
 
 	Except my boots.  Those are *mine.*
 
-Well, it's kind of cool that you at least formatted it a bit for yourself, but now the question is - how are you going to parse this text into an easily-usable JavaScript object?
 
-You could write your own parser, of course - or you could use this one.
-
-In Node.js
-------
-
-Install:
-
-	npm install text-metadata-parser
-
-Parse them strings
-------
+Parse:
 
 	var my_drunken_ramblings = parse(that_big_string_from_earlier_in_the_example, {
 		number: ['lovers', 'bagels'],
@@ -52,10 +63,6 @@ PROFIT!!!11
 
 	> my_drunken_ramblings.content
 	'I leave everything to Janet.\n\nExcept my boots.  Those are *mine.*'
-
-Todo
-------
-- Add examples passing in custom values overwriting previous ones
 
 License
 ------

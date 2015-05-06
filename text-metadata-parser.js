@@ -34,10 +34,8 @@ function parse(wizard, text) {
 	return post
 }
 
-var module.exports = function TextMetadataParser(text, options) {
+module.exports = function TextMetadataParser(text, options) {
 	var wizard = new Wizard(options || {})
 
 	return parse(wizard, text)
 }
-
-module.exports = TextMetadataParser.bind(null, )

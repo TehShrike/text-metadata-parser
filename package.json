@@ -1,6 +1,6 @@
 {
   "name": "text-metadata-parser",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "main": "./text-metadata-parser.js",
   "author": {
     "name": "TehShrike",

@@ -5,6 +5,10 @@ function formatKeyValue(key, value) {
 	return key + ': ' + (value.indexOf(':') >= 0 ? '"' + value + '"' : value)
 }
 
+function trimLeftWhitespace(str) {
+	return str.replace(/^[\s\uFEFF\xA0]*\n/, '')
+}
+
 function makeBackwardsCompatible(text) {
 	var lines = text.split('\n')
 	var done_reading_metadata = false
@@ -39,7 +43,7 @@ function parseString(text) {
 	var parsedYaml = yaml.loadFront(text)
 
 	var output = {
-		content: parsedYaml.__content.trim()
+		content: trimLeftWhitespace(parsedYaml.__content)
 	}
 	delete parsedYaml.__content
 	output.metadata = parsedYaml

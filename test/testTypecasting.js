@@ -1,4 +1,4 @@
-var test = require('tap').test
+var test = require('tape')
 var parse = require('../')
 
 test("basic functionality", function(t) {
@@ -26,7 +26,7 @@ test("basic functionality", function(t) {
 
 	t.equal(result.metadata.lovers, 3, "lovers should be the number 3")
 	t.equal(result.metadata.title, "Last will and testament", "match title")
-	t.similar(result.metadata.date, new Date("2019-09-13"), "match date")
+	t.equal(result.metadata.date.getTime(), new Date("2019-09-13").getTime(), "match date")
 	t.equal(result.metadata.attn, "Secret Family", "match attn string")
 	t.equal(result.metadata.deceased, true, "match deceased boolean")
 	t.end()
@@ -41,7 +41,7 @@ test("date typecasting", function(t) {
 		date: 'something'
 	})
 
-	t.similar(result.metadata.something, new Date(1383181326000), "matching the date constructed from a unix timestamp")
+	t.equal(result.metadata.something.getTime(), new Date(1383181326000).getTime(), "matching the date constructed from a unix timestamp")
 	t.equal(result.metadata['something else'], "whatever", "string property")
 	t.equal(result.content, "is this real life?\nis this just fantasy", "matching body")
 

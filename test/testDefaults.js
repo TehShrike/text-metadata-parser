@@ -1,4 +1,4 @@
-var test = require('tap').test
+var test = require('tape')
 var parse = require('../')
 
 test('setting default values', function(t) {
@@ -17,7 +17,7 @@ test('setting default values', function(t) {
 	})
 
 	t.equal(result.metadata['what is it'], 13, 'use the provided value instead of the default')
-	t.equal(result.metadata['or this one'], '20', 'use the default because no value was provided')	
+	t.equal(result.metadata['or this one'], '20', 'use the default because no value was provided')
 	t.equal(typeof result.metadata['one more'], 'number', 'should be a number')
 	t.equal(result.content, 'Who knows!', 'content matches')
 

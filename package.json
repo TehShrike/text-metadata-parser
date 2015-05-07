@@ -18,7 +18,7 @@
     "url": "https://github.com/TehShrike/text-metadata-parser.git"
   },
   "devDependencies": {
-    "tap": "~0.4.4"
+    "tape": "^4.0.0"
   },
   "dependencies": {
     "weak-type-wizard": "^1.0.0",
@@ -28,6 +28,6 @@
     "test": "test"
   },
   "scripts": {
-    "test": "tap ./test/*.js"
+    "test": "tape ./test/*.js"
   }
 }

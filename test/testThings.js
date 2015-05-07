@@ -1,4 +1,4 @@
-var test = require('tap').test
+var test = require('tape')
 var parse = require('../')
 
 test("first generic test", function test(t) {
@@ -23,7 +23,7 @@ test("first generic test", function test(t) {
 	})
 
 	t.equal(parsed_string.metadata.title, 'Last will and testament', 'parse title')
-	t.similar(parsed_string.metadata.date, new Date('2019-09-13'), 'test date') // new Date(string) is local timezone, new Date(y,m,d) is UTC...
+	t.equal(parsed_string.metadata.date.getTime(), new Date('2019-09-13').getTime(), 'test date') // new Date(string) is local timezone, new Date(y,m,d) is UTC...
 	t.equal(parsed_string.metadata.attn, 'Secret Family', 'attn field')
 	t.equal(parsed_string.metadata.lovers, 3, 'number of lovers')
 	t.equal(parsed_string.metadata.bagels, 3.5, 'default bagels')
@@ -48,7 +48,7 @@ test("colon in content, newlines at content end", function test(t) {
 	})
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'parse title')
-	t.equal(parsed_string.content, "not_a_value: unreal", 'newlines preserved')
+	t.equal(parsed_string.content, "not_a_value: unreal\n\n", 'newlines preserved')
 
 	t.end()
 })
@@ -65,7 +65,7 @@ test("newline versus carriage return", function test(t) {
 	})
 
 	t.equal(parsed_string.metadata.title, 'my sweet title', 'title does not contain newline or carriage return')
-	t.equal(parsed_string.content, "not_a_value: unreal", 'newline and carriage return preserved')
+	t.equal(parsed_string.content, "not_a_value: unreal\r\n", 'newline and carriage return preserved')
 
 	t.end()
 })
@@ -130,7 +130,7 @@ test("unbounded yaml what does it do? it breaks things! surround with the three 
 
 	t.equal(parsed_string.metadata.title, 'sweetness', 'first simple metadata still parses')
 	t.equal(parsed_string.metadata.more, undefined, 'the simple key:value of old does not support anything complex')
-	t.equal(parsed_string.content, '- thing\n  - other\n\nthis is some text', 'the first line without : is the content')
+	t.equal(parsed_string.content, '  - thing\n  - other\n\nthis is some text', 'the first line without : is the content')
 
 	t.end()
 })

@@ -1,21 +1,14 @@
 var jsYaml = require('js-yaml')
 
-module.exports = function jsYamlParse(text, name) {
-  name = name || '__content';
-  var re = /^(-{3}(?:\n|\r)([\w\W]+?)(?:\n|\r)-{3})?([\w\W]*)*/
-    , results = re.exec(text)
-    , conf = {}
-    , yamlOrJson;
+var regex = /^(-{3}(?:\r?\n)([\w\W]+?)(?:\r?\n)-{3})?([\w\W]*)*/
 
-  if((yamlOrJson = results[2])) {
-    if(yamlOrJson.charAt(0) === '{') {
-      conf = JSON.parse(yamlOrJson);
-    } else {
-      conf = jsYaml.load(yamlOrJson);
-    }
-  }
+module.exports = function jsYamlParse(text, contentName) {
+	contentName = contentName || '__content';
 
-  conf[name] = results[3] ? results[3] : '';
+	var results = regex.exec(text)
+	var output = results[2] ? jsYaml.load(results[2]) : {}
 
-  return conf;
-};
+	output[contentName] = results[3] || ''
+
+	return output
+}

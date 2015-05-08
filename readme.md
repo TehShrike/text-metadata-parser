@@ -4,7 +4,7 @@ Text Metadata Parser is a [Jekyll Front Matter](http://jekyllrb.com/docs/frontma
 
 It was created in 2013, before Jekyll was widespread enough for me to just use Front Matter instead.
 
-At this point, text-metadata-parser uses [yaml-front-matter](https://www.npmjs.com/package/yaml-front-matter) internally, meaning that it supports all the YAML features that the other library supports.
+At this point, text-metadata-parser uses [js-yaml](https://www.npmjs.com/package/js-yaml) internally, meaning that it supports all the YAML features that the other library supports.
 
 In addition, for backwards compatibility, it also allows you to use a much looser syntax.  If you do not enclose the metadata section in `---` three dashes, they will be inferred.  When parsing metadata in "loose mode", key: value sections that have colons in the value string will be allowed, even if they are not enclosed in double quotes.
 

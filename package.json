@@ -21,8 +21,8 @@
     "tape": "^4.0.0"
   },
   "dependencies": {
-    "weak-type-wizard": "^1.0.0",
-    "yaml-front-matter": "^3.2.3"
+    "js-yaml": "^3.3.0",
+    "weak-type-wizard": "^1.0.0"
   },
   "directories": {
     "test": "test"

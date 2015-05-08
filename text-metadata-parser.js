@@ -1,5 +1,5 @@
 var Wizard = require('weak-type-wizard')
-var yaml = require('yaml-front-matter')
+var yaml = require('./js-yaml-front.js')
 
 function formatKeyValue(key, value) {
 	return key + ': ' + (value.indexOf(':') >= 0 ? '"' + value + '"' : value)
@@ -40,7 +40,7 @@ function parseString(text) {
 	if (text.indexOf('---') !== 0) {
 		text = makeBackwardsCompatible(text)
 	}
-	var parsedYaml = yaml.loadFront(text)
+	var parsedYaml = yaml(text)
 
 	var output = {
 		content: trimLeftWhitespace(parsedYaml.__content)

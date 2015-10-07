@@ -30,10 +30,14 @@ function makeBackwardsCompatible(text) {
 		}
 	}
 
-	var metadata = '---\n' + metadataLines.join('\n') + '\n---\n'
-	var content = metadata + lines.slice(i - 1).join('\n')
+	var theRestOfTheFile = lines.slice(i - 1).join('\n')
 
-	return content
+	if (metadataLines.length === 0) {
+		return theRestOfTheFile
+	}
+
+	var metadata = '---\n' + metadataLines.join('\n') + '\n---\n'
+	return metadata + theRestOfTheFile
 }
 
 function parseString(text) {

@@ -150,3 +150,11 @@ test('another example of unbounded yaml with no values', function test(t) {
 
 	t.end()
 })
+
+test('should handle content with no metadata section', function(t) {
+	var parsed_string = parse('\nno metadata section\njust the required leading newline')
+
+	t.equal(parsed_string.content, 'no metadata section\njust the required leading newline')
+
+	t.end()
+})

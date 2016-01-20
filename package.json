@@ -21,7 +21,7 @@
     "tape": "^4.0.0"
   },
   "dependencies": {
-    "js-yaml": "^3.3.0",
+    "js-yaml": "^3.5.2",
     "weak-type-wizard": "^1.0.0"
   },
   "directories": {

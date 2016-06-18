@@ -27,7 +27,7 @@ Example
 Say you wrote some random blog posts in a drunken stupor one night, and saved them all in text files in this format:
 
 	title:    Last will and testament
-	date:	    2019-09-13
+	date:	  2019-09-13T00:00:00.000Z
 	attn:     Secret Family
 	lovers:   3
 	deceased: true
